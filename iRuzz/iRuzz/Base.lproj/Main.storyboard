@@ -75,6 +75,9 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Call"/>
+                                <connections>
+                                    <action selector="call:" destination="BPX-tv-2lp" eventType="touchUpInside" id="WAD-zn-HQA"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iKv-yT-s31">
                                 <rect key="frame" x="814" y="631" width="75" height="30"/>
@@ -101,7 +104,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Pf-tm-fVJ">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="♦3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Pf-tm-fVJ">
                                 <rect key="frame" x="390" y="470" width="42" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -137,7 +140,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VB0-7I-3ll">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="♦A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VB0-7I-3ll">
                                 <rect key="frame" x="390" y="235" width="42" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -185,6 +188,22 @@
                     </view>
                     <navigationItem key="navigationItem" id="MQa-xa-MRy"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="a_card1" destination="XOL-Ei-VUG" id="8M8-qB-x8C"/>
+                        <outlet property="a_card2" destination="gQI-QK-njh" id="lX7-E5-2NT"/>
+                        <outlet property="a_card3" destination="VB0-7I-3ll" id="eBx-uI-yvB"/>
+                        <outlet property="a_card4" destination="lUO-zz-rDK" id="Xwf-SI-Kyb"/>
+                        <outlet property="a_card5" destination="f5u-wI-iZr" id="X9v-LP-84z"/>
+                        <outlet property="a_card6" destination="avb-SR-xGe" id="TV5-Si-p5p"/>
+                        <outlet property="a_card7" destination="ldr-dh-7MY" id="OkQ-mx-5TC"/>
+                        <outlet property="y_card1" destination="P4p-wd-18c" id="Azl-Vc-9VX"/>
+                        <outlet property="y_card2" destination="mEK-wZ-YI5" id="UPD-kW-ab6"/>
+                        <outlet property="y_card3" destination="4Pf-tm-fVJ" id="q7W-9i-W1e"/>
+                        <outlet property="y_card4" destination="5Na-yz-Gnj" id="1SF-pk-hcX"/>
+                        <outlet property="y_card5" destination="kSX-tX-pc6" id="l0w-sI-PlM"/>
+                        <outlet property="y_card6" destination="OEa-cO-wy1" id="XCK-bw-sUw"/>
+                        <outlet property="y_card7" destination="Yek-ay-LLS" id="1lV-wK-Yvq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1qH-hf-JWx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
