@@ -47,10 +47,10 @@
 }
 
 /*
- * 0 - 12 : ♠A - ♠K
- * 13 - 25 : ♥A - ♥K
- * 26 - 38 : ♦A - ♦K
- * 39 - 51 : ♣A - ♣K
+ * 0 - 12 : A♠ - K♠
+ * 13 - 25 : A♥ - K♥
+ * 26 - 38 : A♦ - K♦
+ * 39 - 51 : A♣ - K♣
  */
 - (NSString *) getCardName:(NSInteger) atIndex
 {
@@ -74,24 +74,23 @@
             break;
     }
     
-    NSString *fig;
+    NSString *rank;
     if ((num >= 2) && (num <= 9)) {
-        fig = [NSString stringWithFormat:@"%d", num];
+        rank = [NSString stringWithFormat:@"%d", num];
     } else if (num == 1) {
-        fig = @"A";
+        rank = @"A";
     } else if (num == 10) {
-        fig = @"T";
+        rank = @"T";
     } else if (num == 11) {
-        fig = @"J";
+        rank = @"J";
     } else if (num == 12) {
-        fig = @"Q";
+        rank = @"Q";
     } else if (num == 13) {
-        fig = @"K";
+        rank = @"K";
     } else {
         assert("");
     }
-    NSLog(@"%@%@",suit, fig);
-    return [NSString stringWithFormat:@"%@%@", suit, fig];
+    return [NSString stringWithFormat:@"%@\n%@", rank, suit];
 }
 
 @end

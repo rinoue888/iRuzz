@@ -9,8 +9,12 @@
 #import "GameViewController.h"
 
 @interface GameViewController ()
+{
+ 
 
+}
 @end
+
 
 @implementation GameViewController
 
@@ -28,27 +32,44 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    if (self.m_card == nil) {
-        self.m_card = [[Card alloc] init];
+    
+    // labelのカドを丸くする
+    [self setLabel:self.a_card1];
+    [self setLabel:self.a_card2];
+    [self setLabel:self.a_card3];
+    [self setLabel:self.a_card4];
+    [self setLabel:self.a_card5];
+    [self setLabel:self.a_card6];
+    [self setLabel:self.a_card7];
+    [self setLabel:self.y_card1];
+    [self setLabel:self.y_card2];
+    [self setLabel:self.y_card3];
+    [self setLabel:self.y_card4];
+    [self setLabel:self.y_card5];
+    [self setLabel:self.y_card6];
+    [self setLabel:self.y_card7];
+    
+    if (self.card == nil) {
+        self.card = [[Card alloc] init];
     
         //debug
-        [self.m_card check_deck];
+        [self.card check_deck];
         
-        self.a_card1.text = @"xX";
-        self.a_card2.text = @"xX";
-        self.a_card3.text = [self.m_card getCardName:4];
-        self.a_card4.text = [self.m_card getCardName:6];
-        self.a_card5.text = [self.m_card getCardName:8];
-        self.a_card6.text = [self.m_card getCardName:10];
-        self.a_card7.text = @"xX";
+        self.a_card1.text = @"";
+        self.a_card2.text = @"";
+        self.a_card3.text = [self.card getCardName:4];
+        self.a_card4.text = [self.card getCardName:6];
+        self.a_card5.text = [self.card getCardName:8];
+        self.a_card6.text = [self.card getCardName:10];
+        self.a_card7.text = @"";
 
-        self.y_card1.text = [self.m_card getCardName:1];
-        self.y_card2.text = [self.m_card getCardName:3];
-        self.y_card3.text = [self.m_card getCardName:5];
-        self.y_card4.text = [self.m_card getCardName:7];
-        self.y_card5.text = [self.m_card getCardName:9];
-        self.y_card6.text = [self.m_card getCardName:11];
-        self.y_card7.text = [self.m_card getCardName:13];
+        self.y_card1.text = [self.card getCardName:1];
+        self.y_card2.text = [self.card getCardName:3];
+        self.y_card3.text = [self.card getCardName:5];
+        self.y_card4.text = [self.card getCardName:7];
+        self.y_card5.text = [self.card getCardName:9];
+        self.y_card6.text = [self.card getCardName:11];
+        self.y_card7.text = [self.card getCardName:13];
         
         self.a_card4.hidden = YES;
         self.a_card5.hidden = YES;
@@ -102,5 +123,12 @@
     };
 }
 
+- (void) setLabel:(UILabel *)label
+{
+    [[label layer] setCornerRadius:10.0];
+    [label setClipsToBounds:YES];
+    [[label layer] setBorderColor:[[UIColor blueColor] CGColor]];
+    [[label layer] setBorderWidth:1.0];
+}
 
 @end
