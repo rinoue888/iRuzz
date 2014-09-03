@@ -13,7 +13,7 @@
 
 @interface GameViewController : UIViewController
 
-@property Card * card;
+@property (strong, nonatomic) Card * card;
 @property (weak, nonatomic) IBOutlet UILabel *a_card1;
 @property (weak, nonatomic) IBOutlet UILabel *a_card2;
 @property (weak, nonatomic) IBOutlet UILabel *a_card3;
@@ -30,5 +30,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *y_card7;
 
 - (IBAction)call:(id)sender;
+- (IBAction)fold:(id)sender;
 
 @end

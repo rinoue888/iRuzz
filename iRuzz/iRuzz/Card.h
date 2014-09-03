@@ -11,7 +11,7 @@
 @interface Card : NSObject
 
 #define DECK_SIZE 52 /* 52枚 */
-@property(assign, readwrite) NSMutableArray *deck; /* 52枚のデッキにする */
+@property(strong, nonatomic, readwrite) NSMutableArray *deck; /* 52枚のデッキにする */
 
 - (void) check_deck;
 - (NSString *) getCardName:(NSInteger) atIndex;

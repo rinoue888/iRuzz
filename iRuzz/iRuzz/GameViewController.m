@@ -121,6 +121,20 @@
         self.a_card7.hidden = NO;
         return;
     };
+    if (self.y_card7.hidden == NO) { /* showdown */
+        self.a_card1.text = [self.card getCardName:0];
+        self.a_card2.text = [self.card getCardName:2];
+        self.a_card7.text = [self.card getCardName:12];
+        self.a_card1.backgroundColor = [UIColor whiteColor];
+        self.a_card2.backgroundColor = [UIColor whiteColor];
+        self.a_card7.backgroundColor = [UIColor whiteColor];
+        return;
+    };
+}
+
+- (IBAction)fold:(id)sender
+{
+    [self dismissViewControllerAnimated:NO completion:nil]; /* Close */
 }
 
 - (void) setLabel:(UILabel *)label
@@ -130,5 +144,6 @@
     [[label layer] setBorderColor:[[UIColor blueColor] CGColor]];
     [[label layer] setBorderWidth:1.0];
 }
+
 
 @end
