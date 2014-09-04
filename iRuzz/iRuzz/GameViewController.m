@@ -128,6 +128,29 @@
         self.a_card1.backgroundColor = [UIColor whiteColor];
         self.a_card2.backgroundColor = [UIColor whiteColor];
         self.a_card7.backgroundColor = [UIColor whiteColor];
+        NSArray *handA = [NSArray arrayWithObjects:self.a_card1.text, self.a_card2.text, self.a_card3.text, self.a_card4.text, self.a_card5.text, self.a_card6.text, self.a_card7.text, nil];
+        NSArray *handY = [NSArray arrayWithObjects:self.y_card1.text, self.y_card2.text, self.y_card3.text, self.y_card4.text, self.y_card5.text, self.y_card6.text, self.y_card7.text, nil];
+        int ret = [self.card judgeHandA:handA HandB:handY];
+        
+        // for debug
+        NSString *alertMessage;
+        if (ret == 0) {
+            alertMessage = @"You Win!";
+        } else if (ret == 1) {
+            alertMessage = @"You Lose";
+        } else {
+            alertMessage = @"Draw";
+        }
+        UIAlertView *alert =
+        [[UIAlertView alloc]
+         initWithTitle:@"Result"
+         message:alertMessage
+         delegate:nil
+         cancelButtonTitle:nil
+         otherButtonTitles:@"OK", nil
+         ];
+        [alert show];
+        
         return;
     };
 }
@@ -144,6 +167,5 @@
     [[label layer] setBorderColor:[[UIColor blueColor] CGColor]];
     [[label layer] setBorderWidth:1.0];
 }
-
 
 @end
