@@ -40,6 +40,7 @@
     
     return 0;
 }
+
 /*
  * @return HP7
  */
@@ -107,5 +108,110 @@
     return fourKCounter;
 }
 
+/*
+ * @param HP5 要素5のint配列
+ * @param HP7 要素7のint配列
+ * @param hp7 HandPattern7の種類
+ */
+- (void) getHand5:(int *)hand5 Hand7:(int *)hand7 HP7:(NSUInteger)hp7
+{
+    switch (hp7) {
+        case HP7_0P:
+            [self getHand5HP7_0P:hand5 Hand7:hand7];
+            break;
+        case HP7_1P:
+            [self getHand5HP7_1P:hand5 Hand7:hand7];
+            break;
+        case HP7_2P:
+            [self getHand5HP7_2P:hand5 Hand7:hand7];
+            break;
+        case HP7_3K:
+            [self getHand5HP7_3K:hand5 Hand7:hand7];
+            break;
+        case HP7_3P:
+            [self getHand5HP7_3P:hand5 Hand7:hand7];
+            break;
+        case HP7_3K1P:
+            [self getHand5HP7_3K1P:hand5 Hand7:hand7];
+            break;
+        case HP7_4K:
+            [self getHand5HP7_4K:hand5 Hand7:hand7];
+            break;
+        case HP7_3K2P:
+            [self getHand5HP7_3K2P:hand5 Hand7:hand7];
+            break;
+        case HP7_3K3K:
+            [self getHand5HP7_3K3K:hand5 Hand7:hand7];
+            break;
+        case HP7_4K1P:
+            [self getHand5HP7_4K1P:hand5 Hand7:hand7];
+            break;
+        case HP7_4K3K:
+            [self getHand5HP7_4K3K:hand5 Hand7:hand7];
+            break;
+        default:
+            assert("");
+            break;
+    }
+}
+
+-(void) getHand5HP7_0P:(int *)hand5 Hand7:(int *)hand7
+{
+    for (int i = 0; i < 5; i++) {
+        hand5[i] = hand7[i];
+    }
+}
+
+-(void) getHand5HP7_1P:(int *)hand5 Hand7:(int *)hand7
+{
+    int hand7cp[7];
+    memcpy(hand7cp, hand7, sizeof(int)*7);
+    
+}
+
+-(void) getHand5HP7_2P:(int *)hand5 Hand7:(int *)hand7
+{
+    
+}
+
+-(void) getHand5HP7_3K:(int *)hand5 Hand7:(int *)hand7
+{
+    
+}
+
+-(void) getHand5HP7_3P:(int *)hand5 Hand7:(int *)hand7
+{
+    
+}
+
+-(void) getHand5HP7_3K1P:(int *)hand5 Hand7:(int *)hand7
+{
+    
+}
+
+-(void) getHand5HP7_4K:(int *)hand5 Hand7:(int *)hand7
+{
+    
+}
+
+-(void) getHand5HP7_3K2P:(int *)hand5 Hand7:(int *)hand7
+{
+    
+}
+
+-(void) getHand5HP7_3K3K:(int *)hand5 Hand7:(int *)hand7
+{
+    
+}
+
+-(void) getHand5HP7_4K1P:(int *)hand5 Hand7:(int *)hand7
+{
+    
+}
+
+-(void) getHand5HP7_4K3K:(int *)hand5 Hand7:(int *)hand7
+{
+    
+}
 
 @end
