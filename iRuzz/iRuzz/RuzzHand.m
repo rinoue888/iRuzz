@@ -97,7 +97,7 @@
     NSInteger threeKCounter = [self count3K_HP7:hand];
     NSInteger fourKCounter = [self count4K_HP7:hand];
 
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 6; i++) {
         if (hand[i] == hand[i + 1]) {
             pairCounter++;
         }
@@ -110,7 +110,7 @@
 {
     NSInteger threeKCounter = 0;
     NSInteger fourKCounter = [self count4K_HP7:hand];
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 5; i++) {
         if ( (hand[i] == hand[i + 1]) && (hand[i] == hand[i + 2])) {
             threeKCounter++;
         }
@@ -122,7 +122,7 @@
 - (NSInteger) count4K_HP7:(int *)hand
 {
     NSInteger fourKCounter = 0;
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 4; i++) {
         if ( (hand[i] == hand[i + 1]) && (hand[i] == hand[i + 2]) && (hand[i] == hand[i + 3])) {
             fourKCounter++;
         }
