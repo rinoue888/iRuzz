@@ -38,7 +38,7 @@ int int_sort( const void * a , const void * b ) {
         for ( i = 0; i < DECK_SIZE; i++ ) {
             // 1から52までの一様乱数を発生させる */
             int n = arc4random_uniform(DECK_SIZE);
-            NSLog(@"%2d回目 = %2d", i + 1, n);
+ //           NSLog(@"%2d回目 = %2d", i + 1, n);
             
             while (d52[n] != 0) {
                 n++;
@@ -131,8 +131,8 @@ int int_sort( const void * a , const void * b ) {
         handAOfR[i] = [self getRank:[handA objectAtIndex:i]];
         handBOfR[i] = [self getRank:[handB objectAtIndex:i]];
     }
-    
-    NSLog(@"Before\nhandA=%2d,%2d,%2d,%2d,%2d,%2d,%2d\n", handAOfR[0], handAOfR[1], handAOfR[2], handAOfR[3], handAOfR[4], handAOfR[5], handAOfR[6]);
+    NSLog(@"Before");
+    NSLog(@"handA=%2d,%2d,%2d,%2d,%2d,%2d,%2d\n", handAOfR[0], handAOfR[1], handAOfR[2], handAOfR[3], handAOfR[4], handAOfR[5], handAOfR[6]);
     NSLog(@"handB=%2d,%2d,%2d,%2d,%2d,%2d,%2d\n", handBOfR[0], handBOfR[1], handBOfR[2], handBOfR[3], handBOfR[4], handBOfR[5], handBOfR[6]);
 
     /* クイックソート */
@@ -141,7 +141,8 @@ int int_sort( const void * a , const void * b ) {
     
     handA = [handA sortedArrayUsingSelector:@selector(compare:)];
     handB = [handB sortedArrayUsingSelector:@selector(compare:)];
-    NSLog(@"Before\nhandA=%2d,%2d,%2d,%2d,%2d,%2d,%2d\n", handAOfR[0], handAOfR[1], handAOfR[2], handAOfR[3], handAOfR[4], handAOfR[5], handAOfR[6]);
+    NSLog(@"After");
+    NSLog(@"handA=%2d,%2d,%2d,%2d,%2d,%2d,%2d\n", handAOfR[0], handAOfR[1], handAOfR[2], handAOfR[3], handAOfR[4], handAOfR[5], handAOfR[6]);
     NSLog(@"handB=%2d,%2d,%2d,%2d,%2d,%2d,%2d\n", handBOfR[0], handBOfR[1], handBOfR[2], handBOfR[3], handBOfR[4], handBOfR[5], handBOfR[6]);
     
     RuzzHand *rh = [[RuzzHand alloc] init];

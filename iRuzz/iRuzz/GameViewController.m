@@ -53,7 +53,7 @@
         self.card = [[Card alloc] init];
     
         //debug
-        [self.card check_deck];
+//        [self.card check_deck];
         
         self.a_card1.text = @"";
         self.a_card2.text = @"";
@@ -135,9 +135,9 @@
         // for debug
         NSString *alertMessage;
         if (ret == 0) {
-            alertMessage = @"You Win!";
+            alertMessage = @"You Lose!";
         } else if (ret == 1) {
-            alertMessage = @"You Lose";
+            alertMessage = @"You Win!";
         } else {
             alertMessage = @"Draw";
         }
