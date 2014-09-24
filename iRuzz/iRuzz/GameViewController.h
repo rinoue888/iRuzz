@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-#import "Card.h"
+#import "Deck.h"
 
 @interface GameViewController : UIViewController
 
-@property (strong, nonatomic) Card * card;
+@property (strong, nonatomic) Deck *deck;
 @property (weak, nonatomic) IBOutlet UILabel *a_card1;
 @property (weak, nonatomic) IBOutlet UILabel *a_card2;
 @property (weak, nonatomic) IBOutlet UILabel *a_card3;

@@ -11,13 +11,16 @@
 #import "RuzzHand.h"
 
 @interface Card : NSObject
+{
+    NSString *_displayValue;
+    NSInteger _rank;
+    NSInteger _suit;
+}
 
-#define DECK_SIZE 52 /* 52枚 */
-#define HAND_SIZE 7 /* 手札は最大7枚 */
-@property(strong, nonatomic, readwrite) NSMutableArray *deck; /* 52枚のデッキにする */
+@property (strong, readonly) NSString *displayString;     ///< NSString.
+@property (readonly) NSInteger rank;  ///< localized value.
+@property (readonly) NSInteger suit;  ///< localized value.
 
-- (void) check_deck;
-- (NSString *) getCardName:(NSInteger) atIndex;
-- (NSInteger) judgeHandA:(NSArray *)handA HandB:(NSArray *) handB;
+- (id)initWithCardNumber:(NSInteger)number;
 
 @end
