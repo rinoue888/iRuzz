@@ -1,6 +1,6 @@
 //
 //  GameViewController.m
-//  iRuzz
+//  iRazz
 //
 //  Created by cat on 2014/08/09.
 //  Copyright (c) 2014年 cat. All rights reserved.
@@ -128,7 +128,7 @@
         self.a_card7.backgroundColor = [UIColor whiteColor];
         NSArray *handA = [NSArray arrayWithObjects:[self.deck getCard:0], [self.deck getCard:2], [self.deck getCard:4], [self.deck getCard:6], [self.deck getCard:8], [self.deck getCard:10], [self.deck getCard:12], nil];
         NSArray *handY = [NSArray arrayWithObjects:[self.deck getCard:1], [self.deck getCard:3], [self.deck getCard:5], [self.deck getCard:7], [self.deck getCard:9], [self.deck getCard:11], [self.deck getCard:13], nil];
-        RuzzHand *russHand = [[RuzzHand alloc] init];
+        RazzHand *russHand = [[RazzHand alloc] init];
         int ret = [russHand judgeHandA:handA HandB:handY];
         
         // for debug

@@ -1,6 +1,6 @@
 //
-//  iRuzzTests.m
-//  iRuzzTests
+//  iRazzTests.m
+//  iRazzTests
 //
 //  Created by cat on 2014/08/09.
 //  Copyright (c) 2014年 cat. All rights reserved.
@@ -8,11 +8,11 @@
 
 #import <XCTest/XCTest.h>
 
-@interface iRuzzTests : XCTestCase
+@interface iRazzTests : XCTestCase
 
 @end
 
-@implementation iRuzzTests
+@implementation iRazzTests
 
 - (void)setUp
 {

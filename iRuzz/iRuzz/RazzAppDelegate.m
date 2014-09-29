@@ -1,14 +1,14 @@
 //
-//  RuzzAppDelegate.m
-//  iRuzz
+//  RazzAppDelegate.m
+//  iRazz
 //
 //  Created by cat on 2014/08/09.
 //  Copyright (c) 2014年 cat. All rights reserved.
 //
 
-#import "RuzzAppDelegate.h"
+#import "RazzAppDelegate.h"
 
-@implementation RuzzAppDelegate
+@implementation RazzAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

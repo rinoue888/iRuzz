@@ -1,18 +1,18 @@
 //
-//  RuzzViewController.m
-//  iRuzz
+//  RazzViewController.m
+//  iRazz
 //
 //  Created by cat on 2014/08/09.
 //  Copyright (c) 2014年 cat. All rights reserved.
 //
 
-#import "RuzzViewController.h"
+#import "RazzViewController.h"
 
-@interface RuzzViewController ()
+@interface RazzViewController ()
 
 @end
 
-@implementation RuzzViewController
+@implementation RazzViewController
 
 - (void)viewDidLoad
 {

@@ -1,12 +1,12 @@
 //
-//  RuzzHand.m
-//  iRuzz
+//  RazzHand.m
+//  iRazz
 //
 //  Created by Ryou Inoue on 9/4/14.
 //  Copyright (c) 2014 cat. All rights reserved.
 //
 
-#import "RuzzHand.h"
+#import "RazzHand.h"
 
 #include <stdlib.h>
 
@@ -24,12 +24,12 @@ int int_sort( const void * a , const void * b ) {
 }
 
 
-@interface RuzzHand ()
+@interface RazzHand ()
 {
 }
 @end
 
-@implementation RuzzHand
+@implementation RazzHand
 
 /*
  @retval    0     HandAの勝ち

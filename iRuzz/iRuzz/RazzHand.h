@@ -1,6 +1,6 @@
 //
-//  RuzzHand.h
-//  iRuzz
+//  RazzHand.h
+//  iRazz
 //
 //  Created by Ryou Inoue on 9/4/14.
 //  Copyright (c) 2014 cat. All rights reserved.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Card.h"
 
-@interface RuzzHand : NSObject
+@interface RazzHand : NSObject
 
 #define HAND_SIZE 7 /* 手札は最大7枚 */
 

@@ -1,6 +1,6 @@
 //
 //  Deck.h
-//  iRuzz
+//  iRazz
 //
 //  Created by Ryou Inoue on 2014/09/24.
 //  Copyright (c) 2014年 cat. All rights reserved.
