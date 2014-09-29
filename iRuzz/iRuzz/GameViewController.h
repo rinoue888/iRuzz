@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "Deck.h"
+#import "RuzzHand.h"
 
 @interface GameViewController : UIViewController
 

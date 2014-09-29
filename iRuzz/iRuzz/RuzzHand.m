@@ -8,6 +8,22 @@
 
 #import "RuzzHand.h"
 
+#include <stdlib.h>
+
+/* ソート関数 */
+int int_sort( const void * a , const void * b ) {
+    /* 引数はvoid*型と規定されているのでint型にcastする */
+    if( *( int * )a < *( int * )b ) {
+        return -1;
+    }
+    else
+        if( *( int * )a == *( int * )b ) {
+            return 0;
+        }
+    return 1;
+}
+
+
 @interface RuzzHand ()
 {
 }
@@ -16,11 +32,52 @@
 @implementation RuzzHand
 
 /*
+ @retval    0     HandAの勝ち
+ @retval    1     HandBの勝ち
+ @retval    2     引き分け
+ @retval    -1    HandAとHandBの要素数が違う or ハンドが8枚以上ある
+ @param  handA    Cardのアレイ
+ @param  handB    Cardのアレイ
+ */
+- (NSInteger) judgeHandA:(NSArray *)handA HandB:(NSArray *)handB
+{
+    int handAOfR[HAND_SIZE] = {0};
+    int handBOfR[HAND_SIZE] = {0};
+
+    // 要素数チェック
+    if (([handA count] != [handB count]) && ([handA count] <= HAND_SIZE)) {
+        return -1;
+    }
+
+    int count = [handA count];
+    for (int i = 0; i < count; i++) {
+        Card *tmp;
+        tmp = (Card *)[handA objectAtIndex:i];
+        handAOfR[i] = tmp.rank;
+        tmp = (Card *)[handB objectAtIndex:i];
+        handBOfR[i] = tmp.rank;
+    }
+    NSLog(@"Before");
+    NSLog(@"handA=%2d,%2d,%2d,%2d,%2d,%2d,%2d\n", handAOfR[0], handAOfR[1], handAOfR[2], handAOfR[3], handAOfR[4], handAOfR[5], handAOfR[6]);
+    NSLog(@"handB=%2d,%2d,%2d,%2d,%2d,%2d,%2d\n", handBOfR[0], handBOfR[1], handBOfR[2], handBOfR[3], handBOfR[4], handBOfR[5], handBOfR[6]);
+
+    /* クイックソート */
+    qsort( handAOfR, [handA count], sizeof(int), int_sort );
+    qsort( handBOfR, [handB count], sizeof(int), int_sort );
+
+    NSLog(@"After");
+    NSLog(@"handA=%2d,%2d,%2d,%2d,%2d,%2d,%2d\n", handAOfR[0], handAOfR[1], handAOfR[2], handAOfR[3], handAOfR[4], handAOfR[5], handAOfR[6]);
+    NSLog(@"handB=%2d,%2d,%2d,%2d,%2d,%2d,%2d\n", handBOfR[0], handBOfR[1], handBOfR[2], handBOfR[3], handBOfR[4], handBOfR[5], handBOfR[6]);
+
+    return [self judgeHandAInt:handAOfR HandBInt:handBOfR];
+}
+
+/*
  * @retval    0     HandAの勝ち
  * @retval    1     HandBの勝ち
  * @retval    2     引き分け
  */
-- (NSInteger) judgeHandA:(int *)handA HandB:(int *)handB
+- (NSInteger) judgeHandAInt:(int *)handA HandBInt:(int *)handB
 {
     const NSInteger hp7ToHp5[] = {HP5_0P, HP5_0P, HP5_0P, HP5_0P, HP5_1P, HP5_1P, HP5_1P, HP5_2P, HP5_2P, HP5_2P, HP5_FH};
     

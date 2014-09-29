@@ -126,28 +126,29 @@
         self.a_card1.backgroundColor = [UIColor whiteColor];
         self.a_card2.backgroundColor = [UIColor whiteColor];
         self.a_card7.backgroundColor = [UIColor whiteColor];
-        NSArray *handA = [NSArray arrayWithObjects:self.a_card1.text, self.a_card2.text, self.a_card3.text, self.a_card4.text, self.a_card5.text, self.a_card6.text, self.a_card7.text, nil];
-        NSArray *handY = [NSArray arrayWithObjects:self.y_card1.text, self.y_card2.text, self.y_card3.text, self.y_card4.text, self.y_card5.text, self.y_card6.text, self.y_card7.text, nil];
-//        int ret = [self.card judgeHandA:handA HandB:handY];
-//        
-//        // for debug
-//        NSString *alertMessage;
-//        if (ret == 0) {
-//            alertMessage = @"You Lose!";
-//        } else if (ret == 1) {
-//            alertMessage = @"You Win!";
-//        } else {
-//            alertMessage = @"Draw";
-//        }
-//        UIAlertView *alert =
-//        [[UIAlertView alloc]
-//         initWithTitle:@"Result"
-//         message:alertMessage
-//         delegate:nil
-//         cancelButtonTitle:nil
-//         otherButtonTitles:@"OK", nil
-//         ];
-//        [alert show];
+        NSArray *handA = [NSArray arrayWithObjects:[self.deck getCard:0], [self.deck getCard:2], [self.deck getCard:4], [self.deck getCard:6], [self.deck getCard:8], [self.deck getCard:10], [self.deck getCard:12], nil];
+        NSArray *handY = [NSArray arrayWithObjects:[self.deck getCard:1], [self.deck getCard:3], [self.deck getCard:5], [self.deck getCard:7], [self.deck getCard:9], [self.deck getCard:11], [self.deck getCard:13], nil];
+        RuzzHand *russHand = [[RuzzHand alloc] init];
+        int ret = [russHand judgeHandA:handA HandB:handY];
+        
+        // for debug
+        NSString *alertMessage;
+        if (ret == 0) {
+            alertMessage = @"You Lose!";
+        } else if (ret == 1) {
+            alertMessage = @"You Win!";
+        } else {
+            alertMessage = @"Draw";
+        }
+        UIAlertView *alert =
+        [[UIAlertView alloc]
+         initWithTitle:@"Result"
+         message:alertMessage
+         delegate:nil
+         cancelButtonTitle:nil
+         otherButtonTitles:@"OK", nil
+         ];
+        [alert show];
         
         return;
     };
