@@ -22,5 +22,6 @@
 @property (readonly) NSInteger suit;  ///< localized value.
 
 - (id)initWithCardNumber:(NSInteger)number;
+- (NSInteger) judgeRazzCardA:(Card *)cardA CardB:(Card *)cardB;
 
 @end

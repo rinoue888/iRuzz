@@ -30,6 +30,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *y_card6;
 @property (weak, nonatomic) IBOutlet UILabel *y_card7;
 
+@property (weak, nonatomic) IBOutlet UILabel *pot;
+@property (weak, nonatomic) IBOutlet UILabel *a_bet;
+@property (weak, nonatomic) IBOutlet UILabel *y_bet;
+
+- (IBAction)raise:(id)sender;
 - (IBAction)call:(id)sender;
 - (IBAction)fold:(id)sender;
 

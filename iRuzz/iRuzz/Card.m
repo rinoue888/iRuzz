@@ -80,4 +80,32 @@
     return @"";
 }
 
+/*
+ @retval    0     CardAが強い
+ @retval    1     CardBが強い
+ 弱い Ks < Kh < Kd < Kc < Qs < .... < 2c < As < Ah < Ad < Ac 強い
+ 同じカードを比較する機能はありません。
+ 同じカードを比較すると、1が返ってきます。
+ */
+- (NSInteger) judgeRazzCardA:(Card *)cardA CardB:(Card *)cardB;
+{
+    if (cardA.rank == cardB.rank) {
+        if (cardA.suit > cardB.suit) {
+            return 0;
+        }
+        else {
+            return 1;
+        }
+        
+    } else {
+        if (cardA.rank > cardB.rank) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
+    return 0;
+}
+
 @end
