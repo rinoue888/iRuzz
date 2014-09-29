@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6A31971219B6989700AAD4DE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A31971119B6989700AAD4DE /* QuartzCore.framework */; };
+		6A459B5519D2A2E1007EBC93 /* Deck.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A459B5419D2A2E1007EBC93 /* Deck.m */; };
 		6A66122919B0860F00CC3FB9 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A66122819B0860F00CC3FB9 /* Card.m */; };
 		6A77EAD519B873EB0085CA6C /* RuzzHand.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A77EAD419B873EB0085CA6C /* RuzzHand.m */; };
 		6CA9B06019961EEA00A584E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CA9B05F19961EEA00A584E6 /* Foundation.framework */; };
@@ -40,6 +41,8 @@
 
 /* Begin PBXFileReference section */
 		6A31971119B6989700AAD4DE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		6A459B5319D2A2E1007EBC93 /* Deck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Deck.h; sourceTree = "<group>"; };
+		6A459B5419D2A2E1007EBC93 /* Deck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Deck.m; sourceTree = "<group>"; };
 		6A66122719B0860F00CC3FB9 /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
 		6A66122819B0860F00CC3FB9 /* Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
 		6A77EAD319B873EB0085CA6C /* RuzzHand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuzzHand.h; sourceTree = "<group>"; };
@@ -139,6 +142,8 @@
 				6CA9B097199636AA00A584E6 /* GameViewController.m */,
 				6A66122719B0860F00CC3FB9 /* Card.h */,
 				6A66122819B0860F00CC3FB9 /* Card.m */,
+				6A459B5319D2A2E1007EBC93 /* Deck.h */,
+				6A459B5419D2A2E1007EBC93 /* Deck.m */,
 				6A77EAD319B873EB0085CA6C /* RuzzHand.h */,
 				6A77EAD419B873EB0085CA6C /* RuzzHand.m */,
 			);
@@ -277,6 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A66122919B0860F00CC3FB9 /* Card.m in Sources */,
+				6A459B5519D2A2E1007EBC93 /* Deck.m in Sources */,
 				6CA9B098199636AA00A584E6 /* GameViewController.m in Sources */,
 				6CA9B07619961EEA00A584E6 /* RuzzViewController.m in Sources */,
 				6CA9B06C19961EEA00A584E6 /* main.m in Sources */,

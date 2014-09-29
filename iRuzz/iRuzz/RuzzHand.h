@@ -7,8 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Card.h"
 
 @interface RuzzHand : NSObject
+
+#define HAND_SIZE 7 /* 手札は最大7枚 */
 
 typedef NS_ENUM(NSUInteger, HP7) { /* HandPattern7 */
     HP7_0P,     // HP5_0P group
@@ -31,7 +34,7 @@ typedef NS_ENUM(NSUInteger, HP5) { /* HandPattern5 */
     HP5_FH,
 };
 
-- (NSInteger) judgeHandA:(int *)handA HandB:(int *)handB;
+- (NSInteger) judgeHandA:(NSArray *)handA HandB:(NSArray *)handB;
 - (NSInteger) checkHP7:(int *)hand;
 - (NSInteger) checkHP5:(int *)hand;
 

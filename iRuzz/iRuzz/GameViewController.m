@@ -49,27 +49,25 @@
     [self setLabel:self.y_card6];
     [self setLabel:self.y_card7];
     
-    if (self.card == nil) {
-        self.card = [[Card alloc] init];
+    if (self.deck == nil) {
+        self.deck = [[Deck alloc] init];
     
-        //debug
-//        [self.card check_deck];
         
         self.a_card1.text = @"";
         self.a_card2.text = @"";
-        self.a_card3.text = [self.card getCardName:4];
-        self.a_card4.text = [self.card getCardName:6];
-        self.a_card5.text = [self.card getCardName:8];
-        self.a_card6.text = [self.card getCardName:10];
+        self.a_card3.text = [self.deck getCard:4].displayString;
+        self.a_card4.text = [self.deck getCard:6].displayString;
+        self.a_card5.text = [self.deck getCard:8].displayString;
+        self.a_card6.text = [self.deck getCard:10].displayString;
         self.a_card7.text = @"";
 
-        self.y_card1.text = [self.card getCardName:1];
-        self.y_card2.text = [self.card getCardName:3];
-        self.y_card3.text = [self.card getCardName:5];
-        self.y_card4.text = [self.card getCardName:7];
-        self.y_card5.text = [self.card getCardName:9];
-        self.y_card6.text = [self.card getCardName:11];
-        self.y_card7.text = [self.card getCardName:13];
+        self.y_card1.text = [self.deck getCard:1].displayString;
+        self.y_card2.text = [self.deck getCard:3].displayString;
+        self.y_card3.text = [self.deck getCard:5].displayString;
+        self.y_card4.text = [self.deck getCard:7].displayString;
+        self.y_card5.text = [self.deck getCard:9].displayString;
+        self.y_card6.text = [self.deck getCard:11].displayString;
+        self.y_card7.text = [self.deck getCard:13].displayString;
         
         self.a_card4.hidden = YES;
         self.a_card5.hidden = YES;
@@ -122,15 +120,16 @@
         return;
     };
     if (self.y_card7.hidden == NO) { /* showdown */
-        self.a_card1.text = [self.card getCardName:0];
-        self.a_card2.text = [self.card getCardName:2];
-        self.a_card7.text = [self.card getCardName:12];
+        self.a_card1.text = [self.deck getCard:0].displayString;
+        self.a_card2.text = [self.deck getCard:2].displayString;
+        self.a_card7.text = [self.deck getCard:12].displayString;
         self.a_card1.backgroundColor = [UIColor whiteColor];
         self.a_card2.backgroundColor = [UIColor whiteColor];
         self.a_card7.backgroundColor = [UIColor whiteColor];
-        NSArray *handA = [NSArray arrayWithObjects:self.a_card1.text, self.a_card2.text, self.a_card3.text, self.a_card4.text, self.a_card5.text, self.a_card6.text, self.a_card7.text, nil];
-        NSArray *handY = [NSArray arrayWithObjects:self.y_card1.text, self.y_card2.text, self.y_card3.text, self.y_card4.text, self.y_card5.text, self.y_card6.text, self.y_card7.text, nil];
-        int ret = [self.card judgeHandA:handA HandB:handY];
+        NSArray *handA = [NSArray arrayWithObjects:[self.deck getCard:0], [self.deck getCard:2], [self.deck getCard:4], [self.deck getCard:6], [self.deck getCard:8], [self.deck getCard:10], [self.deck getCard:12], nil];
+        NSArray *handY = [NSArray arrayWithObjects:[self.deck getCard:1], [self.deck getCard:3], [self.deck getCard:5], [self.deck getCard:7], [self.deck getCard:9], [self.deck getCard:11], [self.deck getCard:13], nil];
+        RuzzHand *russHand = [[RuzzHand alloc] init];
+        int ret = [russHand judgeHandA:handA HandB:handY];
         
         // for debug
         NSString *alertMessage;
