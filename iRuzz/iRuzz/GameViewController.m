@@ -119,22 +119,24 @@
     [sender setEnabled:NO];
     
     if (self.y_card5.hidden == YES) { /* 4th street までは raise額5 */
-        NSInteger ybetPrize = self.y_bet.text.integerValue;
-        ybetPrize = ybetPrize + 5;
-        self.y_bet.text = [NSString stringWithFormat:@"%d", ybetPrize];
-        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.5]];
         NSInteger abetPrize = self.a_bet.text.integerValue;
-        abetPrize = abetPrize + 5;
-        self.a_bet.text = [NSString stringWithFormat:@"%d", abetPrize];
+        NSInteger ybetPrize = abetPrize + 5;
+        self.y_bet.text = [NSString stringWithFormat:@"%ld", (long)ybetPrize];
+        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.5]];
+        if (abetPrize != ybetPrize) { //一致しない場合はコール
+            abetPrize = ybetPrize;
+        }
+        self.a_bet.text = [NSString stringWithFormat:@"%ld", (long)abetPrize];
         [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.5]];
     } else { /* 4th street 以降は raise額10 */
-        NSInteger ybetPrize = self.y_bet.text.integerValue;
-        ybetPrize = ybetPrize + 10;
-        self.y_bet.text = [NSString stringWithFormat:@"%d", ybetPrize];
-        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.5]];
         NSInteger abetPrize = self.a_bet.text.integerValue;
-        abetPrize = abetPrize + 10;
-        self.a_bet.text = [NSString stringWithFormat:@"%d", abetPrize];
+        NSInteger ybetPrize = abetPrize + 10;
+        self.y_bet.text = [NSString stringWithFormat:@"%ld", (long)ybetPrize];
+        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.5]];
+        if (abetPrize != ybetPrize) { //一致しない場合はコール
+            abetPrize = ybetPrize;
+        }
+        self.a_bet.text = [NSString stringWithFormat:@"%ld", (long)abetPrize];
         [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.5]];
     }
     
@@ -149,10 +151,20 @@
     if (self.state == END) { /* 最後まで盤面が進んでいれば無効化 */
         return;
     }
+    [sender setEnabled:NO];
 
+    NSInteger ybetPrize = self.y_bet.text.integerValue;
+    NSInteger abetPrize = self.a_bet.text.integerValue;
+    if (abetPrize != ybetPrize) { //一致しない場合は合わせる
+        ybetPrize = abetPrize;
+        self.y_bet.text = [NSString stringWithFormat:@"%ld", (long)ybetPrize];
+        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.5]];
+    }
+    
     [self commitPot];
     
     [self loadNextCard];
+    [sender setEnabled:YES];
 }
 
 - (IBAction)fold:(id)sender
@@ -200,7 +212,7 @@
         NSArray *handA = [NSArray arrayWithObjects:[self.deck getCard:0], [self.deck getCard:2], [self.deck getCard:4], [self.deck getCard:6], [self.deck getCard:8], [self.deck getCard:10], [self.deck getCard:12], nil];
         NSArray *handY = [NSArray arrayWithObjects:[self.deck getCard:1], [self.deck getCard:3], [self.deck getCard:5], [self.deck getCard:7], [self.deck getCard:9], [self.deck getCard:11], [self.deck getCard:13], nil];
         RazzHand *russHand = [[RazzHand alloc] init];
-        int ret = [russHand judgeHandA:handA HandB:handY];
+        NSInteger ret = [russHand judgeHandA:handA HandB:handY];
         
         // for debug
         NSString *alertMessage;
