@@ -9,11 +9,11 @@
 #import "GameViewController.h"
 
 @interface GameViewController ()
-{
- 
 
-}
+@property (readwrite) GAMESTATE state;
+
 @end
+
 
 
 @implementation GameViewController
@@ -48,6 +48,7 @@
     [self setLabel:self.y_card5];
     [self setLabel:self.y_card6];
     [self setLabel:self.y_card7];
+    self.state = PLAYING;
     
     if (self.deck == nil) {
         self.deck = [[Deck alloc] init];
@@ -83,7 +84,7 @@
         Card *y_card3 = [self.deck getCard:5];
         if ([a_card3 judgeRazzCardA:a_card3 CardB:y_card3] == 0) {
             self.y_bet.text = @"5";
-            self.a_bet.text = @"0";
+            self.a_bet.text = @"5";
         }
         else {
             self.y_bet.text = @"0";
@@ -111,143 +112,47 @@
 
 - (IBAction)raise:(id)sender
 {
-    NSInteger potPrize = self.pot.text.integerValue;
-    potPrize = potPrize + self.y_bet.text.integerValue + self.a_bet.text.integerValue;
-    self.pot.text = [NSString stringWithFormat:@"%d", potPrize];
-    self.y_bet.text = @"0";
-    self.a_bet.text = @"0";
+    if (self.state == END) { /* 最後まで盤面が進んでいれば無効化 */
+        return;
+    }
+    
+    [sender setEnabled:NO];
+    
+    if (self.y_card5.hidden == YES) { /* 4th street までは raise額5 */
+        NSInteger ybetPrize = self.y_bet.text.integerValue;
+        ybetPrize = ybetPrize + 5;
+        self.y_bet.text = [NSString stringWithFormat:@"%d", ybetPrize];
+        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.5]];
+        NSInteger abetPrize = self.a_bet.text.integerValue;
+        abetPrize = abetPrize + 5;
+        self.a_bet.text = [NSString stringWithFormat:@"%d", abetPrize];
+        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.5]];
+    } else { /* 4th street 以降は raise額10 */
+        NSInteger ybetPrize = self.y_bet.text.integerValue;
+        ybetPrize = ybetPrize + 10;
+        self.y_bet.text = [NSString stringWithFormat:@"%d", ybetPrize];
+        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.5]];
+        NSInteger abetPrize = self.a_bet.text.integerValue;
+        abetPrize = abetPrize + 10;
+        self.a_bet.text = [NSString stringWithFormat:@"%d", abetPrize];
+        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.5]];
+    }
+    
+    [self commitPot];
+    [self loadNextCard];
 
-    if (self.y_card4.hidden == YES) {
-        self.y_card4.hidden = NO;
-        self.a_card4.hidden = NO;
-        NSInteger potPrize = self.pot.text.integerValue;
-        potPrize = potPrize + 10;
-        self.pot.text = [NSString stringWithFormat:@"%d", potPrize];
-        return;
-    };
-    if (self.y_card5.hidden == YES) {
-        self.y_card5.hidden = NO;
-        self.a_card5.hidden = NO;
-        NSInteger potPrize = self.pot.text.integerValue;
-        potPrize = potPrize + 10;
-        self.pot.text = [NSString stringWithFormat:@"%d", potPrize];
-        return;
-    };
-    if (self.y_card6.hidden == YES) {
-        self.y_card6.hidden = NO;
-        self.a_card6.hidden = NO;
-        NSInteger potPrize = self.pot.text.integerValue;
-        potPrize = potPrize + 20;
-        self.pot.text = [NSString stringWithFormat:@"%d", potPrize];
-        return;
-    };
-    if (self.y_card7.hidden == YES) {
-        self.y_card7.hidden = NO;
-        self.a_card7.hidden = NO;
-        NSInteger potPrize = self.pot.text.integerValue;
-        potPrize = potPrize + 20;
-        self.pot.text = [NSString stringWithFormat:@"%d", potPrize];
-        return;
-    };
-    if (self.y_card7.hidden == NO) { /* showdown */
-        NSInteger potPrize = self.pot.text.integerValue;
-        potPrize = potPrize + 20;
-        self.pot.text = [NSString stringWithFormat:@"%d", potPrize];
-
-        self.a_card1.text = [self.deck getCard:0].displayString;
-        self.a_card2.text = [self.deck getCard:2].displayString;
-        self.a_card7.text = [self.deck getCard:12].displayString;
-        self.a_card1.backgroundColor = [UIColor whiteColor];
-        self.a_card2.backgroundColor = [UIColor whiteColor];
-        self.a_card7.backgroundColor = [UIColor whiteColor];
-        NSArray *handA = [NSArray arrayWithObjects:[self.deck getCard:0], [self.deck getCard:2], [self.deck getCard:4], [self.deck getCard:6], [self.deck getCard:8], [self.deck getCard:10], [self.deck getCard:12], nil];
-        NSArray *handY = [NSArray arrayWithObjects:[self.deck getCard:1], [self.deck getCard:3], [self.deck getCard:5], [self.deck getCard:7], [self.deck getCard:9], [self.deck getCard:11], [self.deck getCard:13], nil];
-        RazzHand *russHand = [[RazzHand alloc] init];
-        int ret = [russHand judgeHandA:handA HandB:handY];
-        
-        // for debug
-        NSString *alertMessage;
-        if (ret == 0) {
-            alertMessage = @"You Lose!";
-        } else if (ret == 1) {
-            alertMessage = @"You Win!";
-        } else {
-            alertMessage = @"Draw";
-        }
-        UIAlertView *alert =
-        [[UIAlertView alloc]
-         initWithTitle:@"Result"
-         message:alertMessage
-         delegate:nil
-         cancelButtonTitle:nil
-         otherButtonTitles:@"OK", nil
-         ];
-        [alert show];
-        
-        return;
-    };
-
+    [sender setEnabled:YES];
 }
 
 - (IBAction)call:(id)sender
 {
-    NSInteger potPrize = self.pot.text.integerValue;
-    potPrize = potPrize + self.y_bet.text.integerValue + self.a_bet.text.integerValue;
-    self.pot.text = [NSString stringWithFormat:@"%d", potPrize];
+    if (self.state == END) { /* 最後まで盤面が進んでいれば無効化 */
+        return;
+    }
+
+    [self commitPot];
     
-    if (self.y_card4.hidden == YES) {
-        self.y_card4.hidden = NO;
-        self.a_card4.hidden = NO;
-        return;
-    };
-    if (self.y_card5.hidden == YES) {
-        self.y_card5.hidden = NO;
-        self.a_card5.hidden = NO;
-        return;
-    };
-    if (self.y_card6.hidden == YES) {
-        self.y_card6.hidden = NO;
-        self.a_card6.hidden = NO;
-        return;
-    };
-    if (self.y_card7.hidden == YES) {
-        self.y_card7.hidden = NO;
-        self.a_card7.hidden = NO;
-        return;
-    };
-    if (self.y_card7.hidden == NO) { /* showdown */
-        self.a_card1.text = [self.deck getCard:0].displayString;
-        self.a_card2.text = [self.deck getCard:2].displayString;
-        self.a_card7.text = [self.deck getCard:12].displayString;
-        self.a_card1.backgroundColor = [UIColor whiteColor];
-        self.a_card2.backgroundColor = [UIColor whiteColor];
-        self.a_card7.backgroundColor = [UIColor whiteColor];
-        NSArray *handA = [NSArray arrayWithObjects:[self.deck getCard:0], [self.deck getCard:2], [self.deck getCard:4], [self.deck getCard:6], [self.deck getCard:8], [self.deck getCard:10], [self.deck getCard:12], nil];
-        NSArray *handY = [NSArray arrayWithObjects:[self.deck getCard:1], [self.deck getCard:3], [self.deck getCard:5], [self.deck getCard:7], [self.deck getCard:9], [self.deck getCard:11], [self.deck getCard:13], nil];
-        RazzHand *russHand = [[RazzHand alloc] init];
-        int ret = [russHand judgeHandA:handA HandB:handY];
-        
-        // for debug
-        NSString *alertMessage;
-        if (ret == 0) {
-            alertMessage = @"You Lose!";
-        } else if (ret == 1) {
-            alertMessage = @"You Win!";
-        } else {
-            alertMessage = @"Draw";
-        }
-        UIAlertView *alert =
-        [[UIAlertView alloc]
-         initWithTitle:@"Result"
-         message:alertMessage
-         delegate:nil
-         cancelButtonTitle:nil
-         otherButtonTitles:@"OK", nil
-         ];
-        [alert show];
-        
-        return;
-    };
+    [self loadNextCard];
 }
 
 - (IBAction)fold:(id)sender
@@ -263,4 +168,71 @@
     [[label layer] setBorderWidth:1.0];
 }
 
+- (void) loadNextCard
+{
+    if (self.y_card4.hidden == YES) {
+        self.y_card4.hidden = NO;
+        self.a_card4.hidden = NO;
+        return;
+    };
+    if (self.y_card5.hidden == YES) {
+        self.y_card5.hidden = NO;
+        self.a_card5.hidden = NO;
+        return;
+    };
+    if (self.y_card6.hidden == YES) {
+        self.y_card6.hidden = NO;
+        self.a_card6.hidden = NO;
+        return;
+    };
+    if (self.y_card7.hidden == YES) {
+        self.y_card7.hidden = NO;
+        self.a_card7.hidden = NO;
+        return;
+    };
+    if (self.y_card7.hidden == NO) { /* showdown */
+        self.a_card1.text = [self.deck getCard:0].displayString;
+        self.a_card2.text = [self.deck getCard:2].displayString;
+        self.a_card7.text = [self.deck getCard:12].displayString;
+        self.a_card1.backgroundColor = [UIColor whiteColor];
+        self.a_card2.backgroundColor = [UIColor whiteColor];
+        self.a_card7.backgroundColor = [UIColor whiteColor];
+        NSArray *handA = [NSArray arrayWithObjects:[self.deck getCard:0], [self.deck getCard:2], [self.deck getCard:4], [self.deck getCard:6], [self.deck getCard:8], [self.deck getCard:10], [self.deck getCard:12], nil];
+        NSArray *handY = [NSArray arrayWithObjects:[self.deck getCard:1], [self.deck getCard:3], [self.deck getCard:5], [self.deck getCard:7], [self.deck getCard:9], [self.deck getCard:11], [self.deck getCard:13], nil];
+        RazzHand *russHand = [[RazzHand alloc] init];
+        int ret = [russHand judgeHandA:handA HandB:handY];
+        
+        // for debug
+        NSString *alertMessage;
+        if (ret == 0) {
+            alertMessage = @"You Lose!";
+        } else if (ret == 1) {
+            alertMessage = @"You Win!";
+        } else {
+            alertMessage = @"Draw";
+        }
+        UIAlertView *alert =
+        [[UIAlertView alloc]
+         initWithTitle:@"Result"
+         message:alertMessage
+         delegate:nil
+         cancelButtonTitle:nil
+         otherButtonTitles:@"OK", nil
+         ];
+        [alert show];
+        self.state = END; /* ゲーム終了状態へ遷移 */
+
+        return;
+    };
+}
+
+
+- (void) commitPot
+{
+    NSInteger potPrize = self.pot.text.integerValue;
+    potPrize = potPrize + self.y_bet.text.integerValue + self.a_bet.text.integerValue;
+    self.pot.text = [NSString stringWithFormat:@"%d", potPrize];
+    self.y_bet.text = @"0";
+    self.a_bet.text = @"0";
+}
 @end
